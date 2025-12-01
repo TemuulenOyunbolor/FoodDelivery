@@ -32,6 +32,7 @@ const CLOUD_NAME = "djmbysbc1";
 export const CategoryFoods = ({ id, catname, totalfood }) => {
   const [imgUrl, setImgUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const backend_url = process.env.PUBLIC_BACKEND_URL;
   const [foods, setFoods] = useState([]);
   const [addFood, setAddFood] = useState({
     foodName: "",
@@ -44,7 +45,7 @@ export const CategoryFoods = ({ id, catname, totalfood }) => {
 
   const getFood = async () => {
     const data = await fetch(
-      `http://localhost:8000/food/findByCategoryId/${id}`,
+      `${backend_url}/food/findByCategoryId/${id}`,
       options
     );
     const jsonData = await data.json();
@@ -59,7 +60,7 @@ export const CategoryFoods = ({ id, catname, totalfood }) => {
     console.log(addFood, "asd");
 
     try {
-      const res = await fetch("http://localhost:8000/food", {
+      const res = await fetch(`${backend_url}/food`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

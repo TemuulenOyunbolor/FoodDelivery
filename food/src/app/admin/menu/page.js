@@ -30,12 +30,13 @@ const options = {
 
 export default function Home() {
   const [foodMenu, setFoodMenu] = useState([]);
+  const backend_url = process.env.PUBLIC_BACKEND_URL;
   const [foods, setFoods] = useState([]);
   const [addFoodCategory, setAddFoodCategory] = useState("");
   const [open, setOpen] = useState(false);
 
   const getFood = async () => {
-    const data = await fetch(`http://localhost:8000/food`, options);
+    const data = await fetch(`${backend_url}/food`, options);
     const jsonData = await data.json();
     console.log(jsonData, "aas");
 
@@ -43,7 +44,7 @@ export default function Home() {
   };
 
   const getMenu = async () => {
-    const data = await fetch(`http://localhost:8000/foodCategory`, options);
+    const data = await fetch(`${backend_url}/foodCategory`, options);
     const jsonData = await data.json();
     setFoodMenu(jsonData);
   };
@@ -54,7 +55,7 @@ export default function Home() {
 
   const handleAddChange = async () => {
     try {
-      const res = await fetch("http://localhost:8000/foodCategory", {
+      const res = await fetch(`${backend_url}/foodCategory`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

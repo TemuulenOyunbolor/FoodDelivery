@@ -34,6 +34,7 @@ export const Food = ({ image, foodName, price, ingredients, id }) => {
   const [imgUrl, setImgUrl] = useState(null);
   const [addDishChange, setAddDishChange] = useState(false);
   const [foodsType, setFoodsType] = useState([]);
+  const backend_url = process.env.PUBLIC_BACKEND_URL;
   const [addFood, setAddFood] = useState({
     foodName: "",
     price: "",
@@ -72,7 +73,7 @@ export const Food = ({ image, foodName, price, ingredients, id }) => {
     console.log(addFood, "asd");
 
     try {
-      const res = await fetch("http://localhost:8000/food", {
+      const res = await fetch(`${backend_url}/food`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +108,7 @@ export const Food = ({ image, foodName, price, ingredients, id }) => {
     console.log(addFood, "asd");
 
     try {
-      const res = await fetch("http://localhost:8000/food", {
+      const res = await fetch(`${backend_url}/food`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -126,7 +127,7 @@ export const Food = ({ image, foodName, price, ingredients, id }) => {
   };
   const getFoodType = async () => {
     const data = await fetch(
-      `http://localhost:8000/food/findByCategoryId/${id}`,
+      `${backend_url}/food/findByCategoryId/${id}`,
       options
     );
     const jsonData = await data.json();
@@ -161,7 +162,7 @@ export const Food = ({ image, foodName, price, ingredients, id }) => {
               <button
                 className="w-9 h-9 bg-white absolute rounded-full right-4 bottom-4 flex justify-center items-center text-red-500"
                 onClick={() => {
-                  setFoodDet(true);
+                  setFoodDetail(true);
                 }}
               >
                 <EditIcon />

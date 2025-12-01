@@ -20,11 +20,12 @@ const options = {
   },
 };
 export const AdminUsers = ({ id, status }) => {
+  const backend_url = process.env.PUBLIC_BACKEND_URL;
   const [orderStatus, setOrderStatus] = useState("");
   console.log(orderStatus, "asd");
 
   const getOrderStatus = async () => {
-    const data = await fetch("http://localhost:8000/foodOrder", {
+    const data = await fetch(`${backend_url}/foodOrder`, {
       method: "GET",
       headers: {
         accept: "application/json",
@@ -42,7 +43,7 @@ export const AdminUsers = ({ id, status }) => {
 
   const handlOrderChange = async (id, status) => {
     try {
-      const res = await fetch("http://localhost:8000/foodOrder", {
+      const res = await fetch(`${backend_url}/foodOrder`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

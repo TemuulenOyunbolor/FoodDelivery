@@ -14,10 +14,11 @@ const options = {
 };
 
 export const CartoIcon = ({ id, catname }) => {
+  const backend_url = process.env.PUBLIC_BACKEND_URL;
   const [foods, setFoods] = useState([]);
   const getFood = async () => {
     const data = await fetch(
-      `http://localhost:8000/food/findByCategoryId/${id}`,
+      `${backend_url}/food/findByCategoryId/${id}`,
       options
     );
     const jsonData = await data.json();

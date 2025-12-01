@@ -14,9 +14,10 @@ const options = {
 
 export const PageMenu = () => {
   const [foodCategory, setFoodCategory] = useState([]);
+  const backend_url = process.env.PUBLIC_BACKEND_URL;
 
   const getFoodCategory = async () => {
-    const data = await fetch(`http://localhost:8000/foodCategory`, options);
+    const data = await fetch(`${backend_url}/foodCategory`, options);
     const jsonData = await data.json();
     setFoodCategory(jsonData);
   };
